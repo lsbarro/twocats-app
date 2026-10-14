@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" width="960" height="350" role="img" aria-labelledby="t">
+<title id="t">The receipt pipeline: the phone captures, crops and stitches the receipt into one JPEG; the Go server sends it to Azure Document Intelligence and cleans up the lines; the phone shows the review, spreads the tax and saves in one transaction.</title>
+<style id="theme">
+.t{fill:#F2F2F7}.m{fill:#A3A8A5}.b{fill:#7EC8A6}
+.box{fill:#1C1C1E;stroke:#2C3A33;stroke-width:1}
+.soft{fill:#1A2E26;stroke:#7EC8A6;stroke-width:1}
+.forest{fill:#0F3D2E}.cream{fill:#E8DFC9}.mint{fill:#7EC8A6}.amber{fill:#D9A55A}.terra{fill:#FF8A7A}
+.ln{stroke:#7EC8A6;stroke-width:1.5;fill:none}
+.hair{stroke:#2C3A33;stroke-width:1}
+text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:14px}
+.h{font-weight:600;font-size:15px}.s{font-size:12.5px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="b"/></marker></defs>
+
+<text x="40" y="36" class="m s">On the phone</text>
+<rect x="40" y="48" width="200" height="92" rx="14" class="box"/>
+<text x="56" y="74" class="t h">Capture</text>
+<text x="56" y="96" class="m s">our own camera, one shot,</text>
+<text x="56" y="114" class="m s">with a live outline; or a</text>
+<text x="56" y="132" class="m s">photo from the library</text>
+
+<path class="ln" marker-end="url(#ar)" d="M240 94 H268"/>
+<rect x="270" y="48" width="200" height="92" rx="14" class="box"/>
+<text x="286" y="74" class="t h">Crop</text>
+<text x="286" y="96" class="m s">corners from Vision's document</text>
+<text x="286" y="114" class="m s">detection, draggable; then a</text>
+<text x="286" y="132" class="m s">perspective correction</text>
+
+<path class="ln" marker-end="url(#ar)" d="M470 94 H498"/>
+<rect x="500" y="48" width="200" height="92" rx="14" class="box"/>
+<text x="516" y="74" class="t h">Stitch</text>
+<text x="516" y="96" class="m s">a long receipt's pages become</text>
+<text x="516" y="114" class="m s">one tall image: one scan, one</text>
+<text x="516" y="132" class="m s">receipt, one quota spend</text>
+
+<path class="ln" marker-end="url(#ar)" d="M700 94 H728"/>
+<rect x="730" y="48" width="200" height="92" rx="14" class="box"/>
+<text x="746" y="74" class="t h">Upload</text>
+<text x="746" y="96" class="m s">one JPEG, sized on the phone</text>
+<text x="746" y="114" class="m s">to stay under the server's cap,</text>
+<text x="746" y="132" class="m s">never the full-resolution still</text>
+
+<path class="ln" marker-end="url(#ar)" d="M830 140 V164 H140 V198"/>
+
+<text x="40" y="186" class="m s">On the server, then back on the phone</text>
+<rect x="40" y="200" width="200" height="110" rx="14" class="box"/>
+<text x="56" y="226" class="t h">Proxy</text>
+<text x="56" y="248" class="m s">the Go server holds the only</text>
+<text x="56" y="266" class="m s">Azure key, queues bursts and</text>
+<text x="56" y="284" class="m s">deletes the result once read</text>
+
+<path class="ln" marker-end="url(#ar)" d="M240 255 H268"/>
+<rect x="270" y="200" width="200" height="110" rx="14" class="box"/>
+<text x="286" y="226" class="t h">Read</text>
+<text x="286" y="248" class="m s">Azure Document Intelligence</text>
+<text x="286" y="266" class="m s">returns items, prices, tax,</text>
+<text x="286" y="284" class="m s">merchant, address, currency</text>
+
+<path class="ln" marker-end="url(#ar)" d="M470 255 H498"/>
+<rect x="500" y="200" width="200" height="110" rx="14" class="box"/>
+<text x="516" y="226" class="t h">Clean up</text>
+<text x="516" y="248" class="m s">merge split lines, fold discounts</text>
+<text x="516" y="266" class="m s">into their item, name nameless</text>
+<text x="516" y="284" class="m s">rows, keep each row's tax code</text>
+
+<path class="ln" marker-end="url(#ar)" d="M700 255 H728"/>
+<rect x="730" y="200" width="200" height="110" rx="14" class="soft"/>
+<text x="746" y="226" class="t h">Review and save</text>
+<text x="746" y="248" class="m s">tap who had what, spread the</text>
+<text x="746" y="266" class="m s">tax over the taxed rows, then</text>
+<text x="746" y="284" class="m s">one transaction writes it all</text>
+
+<text x="40" y="338" class="m s">The vendor's answer is mapped to the app's own receipt JSON on the server, so the phone never sees a vendor format and a vendor change is server-only.</text>
+</svg>

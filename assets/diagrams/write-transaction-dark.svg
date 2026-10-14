@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 344" width="960" height="344" role="img" aria-labelledby="t">
+<title id="t">Saving an expense in two cats: one SQLite transaction writes the expense and its splits, re-nets the debts, appends an activity log entry and queues a sync envelope. The screens re-render on commit, and the sync worker pushes later.</title>
+<style id="theme">
+.t{fill:#F2F2F7}.m{fill:#A3A8A5}.b{fill:#7EC8A6}
+.box{fill:#1C1C1E;stroke:#2C3A33;stroke-width:1}
+.soft{fill:#1A2E26;stroke:#7EC8A6;stroke-width:1}
+.forest{fill:#0F3D2E}.cream{fill:#E8DFC9}.mint{fill:#7EC8A6}.amber{fill:#D9A55A}.terra{fill:#FF8A7A}
+.ln{stroke:#7EC8A6;stroke-width:1.5;fill:none}
+.hair{stroke:#2C3A33;stroke-width:1}
+text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:14px}
+.h{font-weight:600;font-size:15px}.s{font-size:12.5px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="b"/></marker></defs>
+
+<rect x="30" y="30" width="900" height="190" rx="18" class="soft"/>
+<text x="50" y="58" class="t h">One SQLite transaction. All four writes land, or none does.</text>
+
+<rect x="50" y="78" width="200" height="118" rx="14" class="box"/>
+<text x="66" y="104" class="t h">1. The record</text>
+<text x="66" y="128" class="mono t">expenses</text>
+<text x="66" y="146" class="mono t">expense_splits</text>
+<text x="66" y="170" class="m s">integer minor units; the payer</text>
+<text x="66" y="186" class="m s">takes the rounding remainder</text>
+
+<rect x="272" y="78" width="200" height="118" rx="14" class="box"/>
+<text x="288" y="104" class="t h">2. The balances</text>
+<text x="288" y="128" class="mono t">debts</text>
+<text x="288" y="152" class="m s">re-netted for each pair, in</text>
+<text x="288" y="168" class="m s">that currency; old rows are</text>
+<text x="288" y="184" class="m s">marked, never deleted</text>
+
+<rect x="494" y="78" width="200" height="118" rx="14" class="box"/>
+<text x="510" y="104" class="t h">3. The history</text>
+<text x="510" y="128" class="mono t">activity_log</text>
+<text x="510" y="152" class="m s">one plain-English entry per</text>
+<text x="510" y="168" class="m s">change, append-only, so</text>
+<text x="510" y="184" class="m s">the log can undo it</text>
+
+<rect x="716" y="78" width="194" height="118" rx="14" class="box"/>
+<text x="732" y="104" class="t h">4. The envelope</text>
+<text x="732" y="128" class="mono t">sync_outbox</text>
+<text x="732" y="152" class="m s">the change as JSON, under a</text>
+<text x="732" y="168" class="m s">client-made UUID, so a retry</text>
+<text x="732" y="184" class="m s">can never apply twice</text>
+
+<path class="ln" marker-end="url(#ar)" d="M250 137 H270"/>
+<path class="ln" marker-end="url(#ar)" d="M472 137 H492"/>
+<path class="ln" marker-end="url(#ar)" d="M694 137 H714"/>
+
+<path class="ln" marker-end="url(#ar)" d="M150 220 V246"/>
+<rect x="50" y="248" width="400" height="74" rx="14" class="box"/>
+<text x="66" y="274" class="t h">Commit, usually within a few milliseconds</text>
+<text x="66" y="294" class="m s">every screen observing those rows re-renders;</text>
+<text x="66" y="310" class="m s">the network was never on the path</text>
+
+<path class="ln" marker-end="url(#ar)" d="M813 220 V246"/>
+<rect x="510" y="248" width="400" height="74" rx="14" class="box"/>
+<text x="526" y="274" class="t h">Later, in the background</text>
+<text x="526" y="294" class="m s">the sync worker pushes the outbox; a failure backs off</text>
+<text x="526" y="310" class="m s">and retries, with the wait capped at 30 seconds</text>
+</svg>

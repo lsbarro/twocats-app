@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" width="960" height="300" role="img" aria-labelledby="t">
+<title id="t">Pairwise netting: you owe Maya $30.00 for Thai takeout and Maya owes you $18.53 for the Trattoria dinner. The engine keeps one open debt row, you owe Maya $11.47, marks the two originals auto-settled and logs the netting.</title>
+<style id="theme">
+.t{fill:#F2F2F7}.m{fill:#A3A8A5}.b{fill:#7EC8A6}
+.box{fill:#1C1C1E;stroke:#2C3A33;stroke-width:1}
+.soft{fill:#1A2E26;stroke:#7EC8A6;stroke-width:1}
+.forest{fill:#0F3D2E}.cream{fill:#E8DFC9}.mint{fill:#7EC8A6}.amber{fill:#D9A55A}.terra{fill:#FF8A7A}
+.ln{stroke:#7EC8A6;stroke-width:1.5;fill:none}
+.hair{stroke:#2C3A33;stroke-width:1}
+text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:14px}
+.h{font-weight:600;font-size:15px}.s{font-size:12.5px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="b"/></marker></defs>
+
+<text x="40" y="40" class="t h">Two expenses between the same two people</text>
+<rect x="40" y="56" width="400" height="64" rx="14" class="box"/>
+<text x="58" y="82" class="t">Thai takeout, Maya paid $60.00, split two ways</text>
+<text x="58" y="104" class="m s">you owe Maya</text>
+<text x="422" y="104" class="terra h" text-anchor="end" style="font-variant-numeric:tabular-nums">$30.00</text>
+
+<rect x="40" y="134" width="400" height="64" rx="14" class="box"/>
+<text x="58" y="160" class="t">Trattoria dinner, you paid $70.85, split three ways</text>
+<text x="58" y="182" class="m s">Maya owes you</text>
+<text x="422" y="182" class="b h" text-anchor="end" style="font-variant-numeric:tabular-nums">$18.53</text>
+
+<path class="ln" marker-end="url(#ar)" d="M452 128 H518"/>
+<text x="485" y="118" class="b s" text-anchor="middle">net</text>
+
+<text x="540" y="40" class="t h">One open debt row for the pair</text>
+<rect x="540" y="56" width="380" height="64" rx="14" class="soft"/>
+<text x="558" y="82" class="t h">You owe Maya</text>
+<text x="902" y="86" class="terra h" text-anchor="end" style="font-variant-numeric:tabular-nums;font-size:22px">$11.47</text>
+<text x="558" y="104" class="mono t">debts: state = open, currency = CAD</text>
+
+<rect x="540" y="134" width="380" height="50" rx="14" class="box"/>
+<text x="558" y="155" class="m s">The $30.00 and $18.53 rows stay, marked</text>
+<text x="558" y="172" class="mono m">auto_settled, simplified_by = &lt;log entry&gt;</text>
+
+<rect x="540" y="198" width="380" height="50" rx="14" class="box"/>
+<text x="558" y="219" class="m s">activity_log: "Maya owes you $18.53 more</text>
+<text x="558" y="236" class="m s">(from Trattoria dinner)", with the netting it caused</text>
+
+<text x="40" y="236" class="m s">Each pair of people nets to one figure per currency.</text>
+<text x="40" y="254" class="m s">Nothing is minimised across a whole group, and no</text>
+<text x="40" y="272" class="m s">expense row is ever changed by the netting.</text>
+</svg>
